@@ -1,7 +1,14 @@
 import random
+import math
 
 def divisors_of_number(target_number): 
-    for integer
+    factors_of_target = []
+    root_target_number = math.sqrt(target_number)
+    divisor_upper_limit = math.floor(root_target_number + 1) 
+    for potential_divisor in range(0, divisor_upper_limit):
+        if target_number % potential_divisor == 0: 
+            factors_of_target.append(potential_divisor)
+    return factors_of_target
 
 def start_game(lower_bound, upper_bound): 
     target_number = random.randint(lower_bound, upper_bound, game_mode)
