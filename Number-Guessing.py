@@ -2,6 +2,14 @@
 import random
 import math
 
+# The following function will randomly choose an integer between a given range and ask the user to select their desired difficulty. ]
+def game_setup():
+    lower_bound = int(input("Please enter the lower bound of the number range: "))
+    upper_bound = int(input("Please enter the upper bound of the number range: "))
+    target_number = random.randint(lower_bound, upper_bound)
+    game_mode = input("Please select a game mode (easy, normal, hard): ").lower
+    return lower_bound, upper_bound, target_number, game_mode
+
 # The function below finds and returns all of the factors of a given 'target_number'.
 def divisors_of_number(target_number): 
     factors_of_target = []
@@ -18,9 +26,26 @@ def divisors_of_number(target_number):
         target_prime = False
     return factors_of_target, target_prime
 
+# The function below creates a dictionary containing all of the hints that can be given to the player. 
+def define_hints():
+    lower_bound, upper_bound, target_number, game_mode = game_setup()
+    hint_dict = {
+
+    }
+    factors_of_target, target_prime = divisors_of_number(target_number) 
+    if target_prime == True: 
+        hint_dict["1"] = "The number is prime."
+    else: 
+        hint_dict["1"] = "The number is not prime."
+    index = 1
+    for factor in factors_of_target: 
+        hint = str(factor) + " is a factor of the target number"
+        hint_dict[str(index)] = hint
+        hint += 1
+
 # The function below will generate a random hint for the user.
-def get_hint(factors_of_target, target_prime, hints_used):
-    
+def get_hint():
+    print
 
 # The function below will ask the user to guess the target number and give the user feedback which depends on the game mode they have chosen. 
 # The following game modes will be possible: 'easy', 'normal', 'hard'.
@@ -38,4 +63,8 @@ def guess_target(lower_bound, upper_bound, game_mode, target_number):
         number_comparisson = "high"
     if game_mode == "easy": 
         print("Incorrect")
-        print("Your guess was too ", number_comparisson)          
+        print("Your guess was too ", number_comparisson)     
+
+def main(): 
+    lower_bound, upper_bound, target_number, game_mode = game_setup()
+    
